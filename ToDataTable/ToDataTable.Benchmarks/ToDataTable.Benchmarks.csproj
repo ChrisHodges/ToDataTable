@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.2</TargetFramework>
+        <OutputType>Exe</OutputType>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="BenchmarkDotNet" Version="0.11.5" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ToDataTable.TestDataGenerator\ToDataTable.TestDataGenerator.csproj" />
+      <ProjectReference Include="..\ToDataTable\ToDataTable.csproj" />
+    </ItemGroup>
+
+</Project>
