@@ -5,9 +5,9 @@ using System.Data;
 
 namespace ToDataTable
 {
-    public class DataTableMapper
+    internal static class DataTableMapper
     {
-        private DataTable CreateDataTable(IEnumerable<DataRowBuilder> dataRowBuilders)
+        private static DataTable CreateDataTable(IEnumerable<DataRowBuilder> dataRowBuilders)
         {
             DataTable table = new DataTable();
             foreach (var builder in dataRowBuilders)
@@ -17,7 +17,7 @@ namespace ToDataTable
             return table;
         }
 
-        private void AddDataRow(DataTable table, IEnumerable<DataRowBuilder> dataRowBuilders, object item)
+        private static void AddDataRow(DataTable table, IEnumerable<DataRowBuilder> dataRowBuilders, object item)
         {
             DataRow row = table.NewRow();
             foreach (var builder in dataRowBuilders)
@@ -25,13 +25,9 @@ namespace ToDataTable
             table.Rows.Add(row);
         }
         
-        public DataTable ToDataTable<T>(IEnumerable<T> enumerable, IToDataTableContext toDataTableContext)
+        internal static DataTable ToDataTable<T>(IEnumerable<T> enumerable, IToDataTableContext toDataTableContext)
         {
-            var dataRowBuilders = toDataTableContext.GetDataRowBuilders<T>();
-            if (dataRowBuilders == null)
-            {
-                dataRowBuilders = toDataTableContext.SetDataRowBuilders<T>(TypeDescriptor.GetProperties(typeof(T)));
-            }
+            var dataRowBuilders = toDataTableContext.GetDataRowBuilders<T>() ?? toDataTableContext.SetDataRowBuilders<T>(TypeDescriptor.GetProperties(typeof(T)));
 
             var table = CreateDataTable(dataRowBuilders);
 

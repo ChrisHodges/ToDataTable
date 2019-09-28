@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace ToDataTable
 {
-    public interface IToDataTableContext
+    internal interface IToDataTableContext
     {
         IEnumerable<DataRowBuilder> GetDataRowBuilders<T>();
         IEnumerable<DataRowBuilder> SetDataRowBuilders<T>(PropertyDescriptorCollection getProperties);

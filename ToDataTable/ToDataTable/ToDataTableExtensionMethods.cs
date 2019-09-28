@@ -8,7 +8,7 @@ namespace ToDataTable
     {
         public static DataTable ToDataTable<T>(this IEnumerable<T> enumerable)
         {
-            return new DataTableMapper().ToDataTable(enumerable, ToDataTableContext.Instance);
+            return DataTableMapper.ToDataTable(enumerable, ToDataTableContext.Instance);
         }
 
         public static SqlParameter ToSqlParameter<T>(this IEnumerable<T> enumerable, string parameterName, string typeName)

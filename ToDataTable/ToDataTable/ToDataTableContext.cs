@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -9,11 +11,11 @@ namespace ToDataTable
     public sealed class ToDataTableContext : IToDataTableContext
     {
         private static readonly Lazy<ToDataTableContext>
-            lazy =
+            Lazy =
                 new Lazy<ToDataTableContext>
                     (() => new ToDataTableContext());
 
-        public static ToDataTableContext Instance { get { return lazy.Value; } }
+        public static ToDataTableContext Instance => Lazy.Value;
 
         private readonly IDictionary<Type, IEnumerable<DataRowBuilder>> _dataRowBuilderCollectionDictionary =
             new Dictionary<Type, IEnumerable<DataRowBuilder>>();
@@ -22,19 +24,14 @@ namespace ToDataTable
         {
         }
 
-        public IEnumerable<DataRowBuilder> GetDataRowBuilders<T>()
+        IEnumerable<DataRowBuilder> IToDataTableContext.GetDataRowBuilders<T>()
         {
             var type = typeof(T);
-            if (_dataRowBuilderCollectionDictionary.ContainsKey(type))
-            {
-                return _dataRowBuilderCollectionDictionary[type];
-            }
-
-            return null;
+            return _dataRowBuilderCollectionDictionary.ContainsKey(type) ? _dataRowBuilderCollectionDictionary[type] : null;
         }
 
         private IEnumerable<DataRowBuilder> CreateDataRowBuilderFromPropertyDescriptorCollection(
-            PropertyDescriptorCollection collection, Type type)
+            IEnumerable collection, Type type)
         {
             var list = new List<DataRowBuilder>();
             foreach (PropertyDescriptor prop in collection)
@@ -55,9 +52,9 @@ namespace ToDataTable
         
         private static Func<object, object> BuildAccessor(MethodInfo method)
         {
-            ParameterExpression obj = Expression.Parameter(typeof(object), "obj");
+            var obj = Expression.Parameter(typeof(object), "obj");
 
-            Expression<Func<object, object>> expr =
+            var expr =
                 Expression.Lambda<Func<object, object>>(
                     Expression.Convert(
                         Expression.Call(
@@ -69,11 +66,28 @@ namespace ToDataTable
             return expr.Compile();
         }
 
-        public IEnumerable<DataRowBuilder> SetDataRowBuilders<T>(PropertyDescriptorCollection collection)
+        IEnumerable<DataRowBuilder> IToDataTableContext.SetDataRowBuilders<T>(PropertyDescriptorCollection collection)
         {
-            var dict = CreateDataRowBuilderFromPropertyDescriptorCollection(collection, typeof(T));
-            _dataRowBuilderCollectionDictionary.Add(typeof(T), dict);
-            return dict;
+            var dataRowBuilders = CreateDataRowBuilderFromPropertyDescriptorCollection(collection, typeof(T));
+            _dataRowBuilderCollectionDictionary.Add(typeof(T), dataRowBuilders);
+            return dataRowBuilders;
+        }
+        
+        public void SetDataRowBuilders(PropertyDescriptorCollection collection, Type type)
+        {
+            var dict = CreateDataRowBuilderFromPropertyDescriptorCollection(collection, type);
+            _dataRowBuilderCollectionDictionary.Add(type, dict);
+        }
+
+        public static void PrecompileMaps(Assembly assembly)
+        {
+            var types = assembly.GetTypes().Where(x =>
+                x.GetCustomAttributes().Any(y => y.GetType() == typeof(PrecompileDataTableMapAttribute)));
+            foreach (var type in types)
+            {
+                var descriptionCollection = TypeDescriptor.GetProperties(type);
+                Instance.SetDataRowBuilders(descriptionCollection, type);
+            }
         }
     }
 }

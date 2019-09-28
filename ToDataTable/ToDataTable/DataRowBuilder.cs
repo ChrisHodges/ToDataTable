@@ -2,7 +2,7 @@ using System;
 
 namespace ToDataTable
 {
-    public class DataRowBuilder
+    internal class DataRowBuilder
     {
         public string Name { get; set; }
         public Type Type { get; set; }
