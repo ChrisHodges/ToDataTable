@@ -1,11 +1,14 @@
 using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("ToDataTable.Tests")]
 namespace ToDataTable
 {
     public sealed class ToDataTableContext : IToDataTableContext
@@ -15,12 +18,14 @@ namespace ToDataTable
                 new Lazy<ToDataTableContext>
                     (() => new ToDataTableContext());
 
-        private readonly IDictionary<Type, IEnumerable<DataRowBuilder>> _dataRowBuilderCollectionDictionary =
-            new Dictionary<Type, IEnumerable<DataRowBuilder>>();
+        private readonly ConcurrentDictionary<Type, IEnumerable<DataRowBuilder>> _dataRowBuilderCollectionDictionary =
+            new ConcurrentDictionary<Type, IEnumerable<DataRowBuilder>>();
 
         private ToDataTableContext()
         {
         }
+
+        public IEnumerable<Type> CachedTypes => _dataRowBuilderCollectionDictionary.Keys;
 
         public static ToDataTableContext Instance => Lazy.Value;
 
@@ -34,29 +39,34 @@ namespace ToDataTable
 
         IEnumerable<DataRowBuilder> IToDataTableContext.SetDataRowBuilders<T>(PropertyDescriptorCollection collection)
         {
-            var dataRowBuilders = CreateDataRowBuilderFromPropertyDescriptorCollection(collection, typeof(T));
-            _dataRowBuilderCollectionDictionary.Add(typeof(T), dataRowBuilders);
+            var type = typeof(T);
+            if (_dataRowBuilderCollectionDictionary.ContainsKey(type))
+            {
+                return _dataRowBuilderCollectionDictionary[type];
+            }
+            var dataRowBuilders = CreateDataRowBuilderFromPropertyDescriptorCollection(collection, type);
+            _dataRowBuilderCollectionDictionary.TryAdd(type, dataRowBuilders);
             return dataRowBuilders;
         }
 
-        private IEnumerable<DataRowBuilder> CreateDataRowBuilderFromPropertyDescriptorCollection(
+        internal DataRowBuilder CreateDataRowBuilderFromPropertyDescriptor(PropertyDescriptor prop, Type type)
+        {
+            var name = prop.Name;
+            var propertyType = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
+            var propertyInfo = type.GetProperty(name);
+            return new DataRowBuilder
+            {
+                Getter = BuildAccessor(propertyInfo.GetGetMethod()),
+                Name = name,
+                Type = propertyType
+            };
+        }
+
+        internal IEnumerable<DataRowBuilder> CreateDataRowBuilderFromPropertyDescriptorCollection(
             IEnumerable collection, Type type)
         {
-            var list = new List<DataRowBuilder>();
-            foreach (PropertyDescriptor prop in collection)
-            {
-                var name = prop.Name;
-                var propertyType = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
-                var propertyInfo = type.GetProperty(name);
-                list.Add(new DataRowBuilder
-                {
-                    Getter = BuildAccessor(propertyInfo.GetGetMethod()),
-                    Name = name,
-                    Type = propertyType
-                });
-            }
-
-            return list;
+            return (collection.Cast<PropertyDescriptor>()
+                .Select(prop => CreateDataRowBuilderFromPropertyDescriptor(prop, type))).ToList();
         }
 
         private static Func<object, object> BuildAccessor(MethodInfo method)
@@ -78,7 +88,7 @@ namespace ToDataTable
         public void SetDataRowBuilders(PropertyDescriptorCollection collection, Type type)
         {
             var dict = CreateDataRowBuilderFromPropertyDescriptorCollection(collection, type);
-            _dataRowBuilderCollectionDictionary.Add(type, dict);
+            _dataRowBuilderCollectionDictionary.TryAdd(type, dict);
         }
 
         public static void PrecompileMaps(Assembly assembly)
