@@ -14,7 +14,7 @@ namespace ToDataTable.Benchmarks
         {
             return _data.ToDataTableVersion1();
         }
-        
+
         [Benchmark]
         public DataTable CurrentVersion()
         {

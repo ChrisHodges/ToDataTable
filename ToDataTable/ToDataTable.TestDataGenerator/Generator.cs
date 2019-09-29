@@ -25,7 +25,7 @@ namespace ToDataTable.TestDataGenerator
                 Double = 5
             };
         }
-        
+
         public static PrecompiledTestClass GetPrecompiledTestClass()
         {
             return new PrecompiledTestClass

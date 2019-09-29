@@ -15,8 +15,6 @@ namespace ToDataTable
                 new Lazy<ToDataTableContext>
                     (() => new ToDataTableContext());
 
-        public static ToDataTableContext Instance => Lazy.Value;
-
         private readonly IDictionary<Type, IEnumerable<DataRowBuilder>> _dataRowBuilderCollectionDictionary =
             new Dictionary<Type, IEnumerable<DataRowBuilder>>();
 
@@ -24,10 +22,21 @@ namespace ToDataTable
         {
         }
 
+        public static ToDataTableContext Instance => Lazy.Value;
+
         IEnumerable<DataRowBuilder> IToDataTableContext.GetDataRowBuilders<T>()
         {
             var type = typeof(T);
-            return _dataRowBuilderCollectionDictionary.ContainsKey(type) ? _dataRowBuilderCollectionDictionary[type] : null;
+            return _dataRowBuilderCollectionDictionary.ContainsKey(type)
+                ? _dataRowBuilderCollectionDictionary[type]
+                : null;
+        }
+
+        IEnumerable<DataRowBuilder> IToDataTableContext.SetDataRowBuilders<T>(PropertyDescriptorCollection collection)
+        {
+            var dataRowBuilders = CreateDataRowBuilderFromPropertyDescriptorCollection(collection, typeof(T));
+            _dataRowBuilderCollectionDictionary.Add(typeof(T), dataRowBuilders);
+            return dataRowBuilders;
         }
 
         private IEnumerable<DataRowBuilder> CreateDataRowBuilderFromPropertyDescriptorCollection(
@@ -49,7 +58,7 @@ namespace ToDataTable
 
             return list;
         }
-        
+
         private static Func<object, object> BuildAccessor(MethodInfo method)
         {
             var obj = Expression.Parameter(typeof(object), "obj");
@@ -66,13 +75,6 @@ namespace ToDataTable
             return expr.Compile();
         }
 
-        IEnumerable<DataRowBuilder> IToDataTableContext.SetDataRowBuilders<T>(PropertyDescriptorCollection collection)
-        {
-            var dataRowBuilders = CreateDataRowBuilderFromPropertyDescriptorCollection(collection, typeof(T));
-            _dataRowBuilderCollectionDictionary.Add(typeof(T), dataRowBuilders);
-            return dataRowBuilders;
-        }
-        
         public void SetDataRowBuilders(PropertyDescriptorCollection collection, Type type)
         {
             var dict = CreateDataRowBuilderFromPropertyDescriptorCollection(collection, type);

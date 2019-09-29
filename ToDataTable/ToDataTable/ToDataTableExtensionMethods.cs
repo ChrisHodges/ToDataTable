@@ -11,7 +11,8 @@ namespace ToDataTable
             return DataTableMapper.ToDataTable(enumerable, ToDataTableContext.Instance);
         }
 
-        public static SqlParameter ToSqlParameter<T>(this IEnumerable<T> enumerable, string parameterName, string typeName)
+        public static SqlParameter ToSqlParameter<T>(this IEnumerable<T> enumerable, string parameterName,
+            string typeName)
         {
             return new SqlParameter
             {

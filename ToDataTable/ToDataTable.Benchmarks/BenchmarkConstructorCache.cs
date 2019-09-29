@@ -17,7 +17,7 @@ namespace ToDataTable.Benchmarks
                 _data.ToDataTableVersion1();
             }
         }
-        
+
         [Benchmark]
         public void CurrentVersion()
         {
