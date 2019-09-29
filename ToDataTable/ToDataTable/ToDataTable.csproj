@@ -9,9 +9,9 @@
 
         <Authors>Chris Hodges</Authors>
 
-        <Description>oDataTable is a pair of .Net Core extension methods that allow you to create a .Net DataTable (or a SQL Server Table-Valued Parameter) from a collection of objects.</Description>
+        <Description>ToDataTable is a pair of .Net Core extension methods that allow you to create a .Net DataTable (or a SQL Server Table-Valued Parameter) from a collection of objects.</Description>
 
-        <PackageLicenseUrl>https://raw.githubusercontent.com/ChrisHodges/ToDataTable/master/LICENSE</PackageLicenseUrl>
+        <PackageLicenseUrl></PackageLicenseUrl>
 
         <PackageProjectUrl>https://github.com/ChrisHodges/ToDataTable</PackageProjectUrl>
 
@@ -26,6 +26,10 @@
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
 
         <FileVersion>0.1.0.0</FileVersion>
+
+        <PackageLicenseExpression>https://raw.githubusercontent.com/ChrisHodges/ToDataTable/master/LICENSE</PackageLicenseExpression>
+
+        <Version>0.1.0</Version>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
