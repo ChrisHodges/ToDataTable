@@ -1,4 +1,5 @@
 using BenchmarkDotNet.Running;
+using System;
 
 namespace ToDataTable.Benchmarks
 {
@@ -8,6 +9,7 @@ namespace ToDataTable.Benchmarks
         {
             //BenchmarkRunner.Run<BenchmarkToDataTableVersions>();
             BenchmarkRunner.Run<BenchmarkConstructorCache>();
+            Console.ReadLine();
         }
     }
 }

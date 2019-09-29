@@ -10,12 +10,12 @@ namespace ToDataTable.TestDataGenerator
             return new TestClass
             {
                 Int = 1,
-                NullableInt = default,
+                NullableInt = null,
                 String = Guid.NewGuid().ToString(),
                 Guid = Guid.NewGuid(),
-                NullableGuid = default,
+                NullableGuid = null,
                 DateTime = new DateTime(2020, 1, 1),
-                NullableDateTime = default,
+                NullableDateTime = null,
                 Binary = Guid.NewGuid().ToByteArray(),
                 Boolean = true,
                 Int16 = 2,
@@ -31,12 +31,12 @@ namespace ToDataTable.TestDataGenerator
             return new PrecompiledTestClass
             {
                 Int = 1,
-                NullableInt = default,
+                NullableInt = null,
                 String = Guid.NewGuid().ToString(),
                 Guid = Guid.NewGuid(),
-                NullableGuid = default,
+                NullableGuid = null,
                 DateTime = new DateTime(2020, 1, 1),
-                NullableDateTime = default,
+                NullableDateTime = null,
                 Binary = Guid.NewGuid().ToByteArray(),
                 Boolean = true,
                 Int16 = 2,
@@ -52,12 +52,12 @@ namespace ToDataTable.TestDataGenerator
             return new TestClass
             {
                 Int = 11,
-                NullableInt = default,
+                NullableInt = null,
                 String = Guid.NewGuid().ToString(),
                 Guid = Guid.NewGuid(),
-                NullableGuid = default,
+                NullableGuid = null,
                 DateTime = new DateTime(2021, 2, 2),
-                NullableDateTime = default,
+                NullableDateTime = null,
                 Binary = Guid.NewGuid().ToByteArray(),
                 Boolean = true,
                 Int16 = 21,
