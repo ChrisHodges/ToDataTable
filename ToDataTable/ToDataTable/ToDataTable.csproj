@@ -3,7 +3,7 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp2.2</TargetFramework>
 
-        <IsPackable>false</IsPackable>
+        <IsPackable>true</IsPackable>
 
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 
@@ -23,13 +23,15 @@
 
         <StartupObject />
 
-        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+        <AssemblyVersion>0.1.2.0</AssemblyVersion>
 
-        <FileVersion>0.1.0.0</FileVersion>
+        <FileVersion>0.1.2.0</FileVersion>
 
-        <PackageLicenseExpression>https://raw.githubusercontent.com/ChrisHodges/ToDataTable/master/LICENSE</PackageLicenseExpression>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
 
         <Version>0.1.0</Version>
+
+        <PackageVersion>0.1.2</PackageVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -37,16 +39,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
         <PackageReference Include="System.Data.SqlClient" Version="4.5.1" />
-        <PackageReference Include="xunit" Version="2.4.0" />
-        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Reference Include="System.Data.SqlClient, Version=4.5.0.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-        <HintPath>..\..\..\.nuget\packages\system.data.sqlclient\4.6.1\ref\netcoreapp2.1\System.Data.SqlClient.dll</HintPath>
-      </Reference>
     </ItemGroup>
 
 </Project>
