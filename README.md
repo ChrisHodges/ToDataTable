@@ -2,44 +2,64 @@
 
 ### What is this?
 
-ToDataTable is a pair of .Net Core extension methods that allow you to create a .Net [DataTable](https://docs.microsoft.com/en-us/dotnet/api/system.data.datatable?view=netframework-4.8) (or a SQL Server [Table-Valued Parameter](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql/table-valued-parameters)) from a collection of objects, e.g:
+ToDataTable is a pair of .Net Core extension methods that allow you to create a .Net [DataTable](https://docs.microsoft.com/en-us/dotnet/api/system.data.datatable?view=netframework-4.8) or a SQL Server [Table-Valued Parameter](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql/table-valued-parameters) from a collection of objects, e.g:
 
-	IEnumerable<SomeClass> enumerable = new List<SomeClass();
-    DataTable dataTable = enumerable.ToDataTable();
-    SqlParamater = enumerable.ToSqlParameter("@SqlParameterName","SqlUserDefinedDataTypeName")
+```csharp
+IEnumerable<SomeClass> enumerable = new List<SomeClass();
+DataTable dataTable = enumerable.ToDataTable();
+SqlParamater = enumerable.ToSqlParameter("@SqlParameterName","SqlUserDefinedDataTypeName")
+```
 
-### Give me an example, preferably using horses:
+### How do I get it?
+
+Install ToDataTable via nuget Package Manager:
+```
+Install-Package ToDataTable -Version 0.1.2
+```
+
+or .Net CLI:
+```
+dotnet add package ToDataTable --version 0.1.2
+```
+
+### Give me an example:
 
 Say you had a `Horse` class:
 
-    public class Horse
-    {
-	    public string Name { get; set;}
-	    public string Occupation { get; set;}
-	    public int Legs { get; set; }
-	    public double TopSpeed {get; set; }
-    }
+```csharp
+public class Horse
+{
+    public string Name { get; set;}
+    public string Occupation { get; set;}
+    public int Legs { get; set; }
+    public double TopSpeed {get; set; }
+}
+```
 
 and you created an array of 2 `Horse`s :
 
-    var horseArray = new[] {
-	    new Horse {
-		    Name = "Dobin",
-		    Occupation "Code Horse",
-		    Legs = 4,
-		    TopSpeed = 18.6
-	    },
-	    new Horse {
-		    Name = "Plato",
-		    Occupation "Curious Gelding",
-		    Legs = 4,
-		    TopSpeed = 22.3
-	    }
-	}
+```csharp
+var horseArray = new[] {
+    new Horse {
+	    Name = "Dobin",
+	    Occupation "Code Horse",
+	    Legs = 4,
+	    TopSpeed = 18.6
+    },
+    new Horse {
+	    Name = "Plato",
+	    Occupation "Curious Gelding",
+	    Legs = 4,
+	    TopSpeed = 22.3
+    }
+}
+```
 
 You'd use the `ToDataTable()` extension method to create a DataTable from your array:
 
-    DataTable myDataTable = horseArray.ToDataTable();
+```csharp
+DataTable myDataTable = horseArray.ToDataTable();
+```
 
 The resulting table would look like this:
 
