@@ -12,14 +12,12 @@ SqlParamater = enumerable.ToSqlParameter("@SqlParameterName","SqlUserDefinedData
 
 ### How do I get it?
 
-Install ToDataTable via nuget:
-
-Package Manager:
+Install ToDataTable via nuget Package Manager:
 ```
 Install-Package ToDataTable -Version 0.1.2
 ```
 
-CLI:
+or .Net CLI:
 ```
 dotnet add package ToDataTable --version 0.1.2
 ```
