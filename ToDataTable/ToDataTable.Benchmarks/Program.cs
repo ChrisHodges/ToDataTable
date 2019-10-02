@@ -7,8 +7,7 @@ namespace ToDataTable.Benchmarks
     {
         public static void Main(string[] args)
         {
-            //BenchmarkRunner.Run<BenchmarkToDataTableVersions>();
-            BenchmarkRunner.Run<BenchmarkConstructorCache>();
+            BenchmarkRunner.Run<BenchmarkToDataTableVersions>();
             Console.ReadLine();
         }
     }
