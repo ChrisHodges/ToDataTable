@@ -47,5 +47,15 @@ namespace ToDataTable.Benchmarks
 
             return table;
         }
+
+        public static DataTable FastMemberFromStackOverflow564366ToDatatable<T>(this IEnumerable<T> data)
+        {
+            DataTable table = new DataTable();
+            using(var reader = ObjectReader.Create(data)) {
+                table.Load(reader);
+            }
+
+            return table;
+        }
     }
 }

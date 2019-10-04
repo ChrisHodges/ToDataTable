@@ -28,6 +28,12 @@ namespace ToDataTable.Benchmarks
         {
             return _data.FastMemberToDataTable();
         }
+
+        [Benchmark]
+        public DataTable UsingFastMemberAnswerFromStackOverflow564366()
+        {
+            return _data.FastMemberFromStackOverflow564366ToDatatable();
+        }
         
         [Benchmark]
         public List<DataTable>  Version1Create100Tables()
