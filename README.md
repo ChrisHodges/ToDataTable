@@ -7,7 +7,7 @@ ToDataTable is a pair of .Net Core extension methods that allow you to create a 
 ```csharp
 IEnumerable<SomeClass> enumerable = new List<SomeClass();
 DataTable dataTable = enumerable.ToDataTable();
-SqlParamater = enumerable.ToSqlParameter("@SqlParameterName","SqlUserDefinedDataTypeName")
+SqlParameter = enumerable.ToSqlParameter("@SqlParameterName","SqlUserDefinedDataTypeName")
 ```
 
 ### How do I get it?
