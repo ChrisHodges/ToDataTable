@@ -2,7 +2,7 @@
 
 ### What is this?
 
-ToDataTable is a pair of .Net Core extension methods that allow you to create a .Net [DataTable](https://docs.microsoft.com/en-us/dotnet/api/system.data.datatable?view=netframework-4.8) or a SQL Server [Table-Valued Parameter](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql/table-valued-parameters) from a collection of objects, e.g:
+ToDataTable is a pair of .NET extension methods that allow you to create a .NET [DataTable](https://docs.microsoft.com/en-us/dotnet/api/system.data.datatable?view=netframework-4.8) or a SQL Server [Table-Valued Parameter](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql/table-valued-parameters) from a collection of objects, e.g:
 
 ```csharp
 IEnumerable<SomeClass> enumerable = new List<SomeClass();
@@ -12,14 +12,14 @@ SqlParameter sqlParameter = enumerable.ToSqlParameter("@SqlParameterName","SqlUs
 
 ### How do I get it?
 
-Install ToDataTable via nuget Package Manager:
+Install ToDataTable via Nuget Package Manager:
 ```
-Install-Package ToDataTable -Version 0.1.2
+Install-Package ToDataTable -Version 0.1.3
 ```
 
-or .Net CLI:
+or .NET CLI:
 ```
-dotnet add package ToDataTable --version 0.1.2
+dotnet add package ToDataTable --version 0.1.3
 ```
 
 ### Give me an example:
@@ -70,7 +70,7 @@ The resulting table would look like this:
 
 ### Why is this useful?
 
-Sql Table-valued parameters are created in .Net using `DataTable`s. Coding a DataTable from scratch is time consuming and prone to error. These extension methods can create a Datatable or a SqlParameter from a collection of objects in a single line of code. 
+SQL table-valued parameters are created in .NET using `DataTable`s. Coding a DataTable from scratch is time consuming and prone to error. These extension methods can create a Datatable or a SqlParameter from a collection of objects in a single line of code. 
 
 ### Is it fast?
 
