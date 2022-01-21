@@ -1,45 +1,45 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>netcoreapp2.2</TargetFramework>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
 
-        <IsPackable>true</IsPackable>
+		<IsPackable>true</IsPackable>
 
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 
-        <Authors>Chris Hodges</Authors>
+		<Authors>Chris Hodges</Authors>
 
-        <Description>ToDataTable is a pair of .Net Core extension methods that allow you to create a .Net DataTable (or a SQL Server Table-Valued Parameter) from a collection of objects.</Description>
+		<Description>ToDataTable is a pair of .NET extension methods that allow you to create a .NET DataTable (or a SQL Server Table-Valued Parameter) from a collection of objects.</Description>
 
-        <PackageLicenseUrl></PackageLicenseUrl>
+		<PackageLicenseUrl></PackageLicenseUrl>
 
-        <PackageProjectUrl>https://github.com/ChrisHodges/ToDataTable</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/ChrisHodges/ToDataTable</PackageProjectUrl>
 
-        <RepositoryUrl>https://github.com/ChrisHodges/ToDataTable</RepositoryUrl>
+		<RepositoryUrl>https://github.com/ChrisHodges/ToDataTable</RepositoryUrl>
 
-        <ApplicationIcon />
+		<ApplicationIcon />
 
-        <OutputType>Library</OutputType>
+		<OutputType>Library</OutputType>
 
-        <StartupObject />
+		<StartupObject />
 
-        <AssemblyVersion>0.1.2.0</AssemblyVersion>
+		<AssemblyVersion>0.1.3.0</AssemblyVersion>
 
-        <FileVersion>0.1.2.0</FileVersion>
+		<FileVersion>0.1.3.0</FileVersion>
 
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 
-        <Version>0.1.0</Version>
+		<Version>0.1.3</Version>
 
-        <PackageVersion>0.1.2</PackageVersion>
-    </PropertyGroup>
+		<PackageVersion>0.1.3</PackageVersion>
+	</PropertyGroup>
 
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-      <PlatformTarget>AnyCPU</PlatformTarget>
-    </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<PlatformTarget>AnyCPU</PlatformTarget>
+	</PropertyGroup>
 
-    <ItemGroup>
-        <PackageReference Include="System.Data.SqlClient" Version="4.5.1" />
-    </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="4.0.1" />
+	</ItemGroup>
 
 </Project>

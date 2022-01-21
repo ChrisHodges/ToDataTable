@@ -1,12 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDataTable.Tests", "ToDataTable.Tests\ToDataTable.Tests.csproj", "{1E9E257C-5A34-40BB-BE64-47404D2D8941}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDataTable.Tests", "ToDataTable.Tests\ToDataTable.Tests.csproj", "{1E9E257C-5A34-40BB-BE64-47404D2D8941}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDataTable", "ToDataTable\ToDataTable.csproj", "{1A5E78EC-16B0-40BF-9848-D1B17F33B501}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDataTable", "ToDataTable\ToDataTable.csproj", "{1A5E78EC-16B0-40BF-9848-D1B17F33B501}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDataTable.Benchmarks", "ToDataTable.Benchmarks\ToDataTable.Benchmarks.csproj", "{3BFF1647-D02F-40D6-A8F3-6F1C7E635CC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDataTable.Benchmarks", "ToDataTable.Benchmarks\ToDataTable.Benchmarks.csproj", "{3BFF1647-D02F-40D6-A8F3-6F1C7E635CC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDataTable.TestDataGenerator", "ToDataTable.TestDataGenerator\ToDataTable.TestDataGenerator.csproj", "{D48109BD-CCF6-41D5-BF65-9E32C4041928}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDataTable.TestDataGenerator", "ToDataTable.TestDataGenerator\ToDataTable.TestDataGenerator.csproj", "{D48109BD-CCF6-41D5-BF65-9E32C4041928}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +33,11 @@ Global
 		{D48109BD-CCF6-41D5-BF65-9E32C4041928}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D48109BD-CCF6-41D5-BF65-9E32C4041928}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D48109BD-CCF6-41D5-BF65-9E32C4041928}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {25320C5E-5C2C-4B27-A3CA-32E35759935B}
 	EndGlobalSection
 EndGlobal

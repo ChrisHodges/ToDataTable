@@ -1,19 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>netcoreapp2.2</TargetFramework>
-        <OutputType>Exe</OutputType>
-    </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<OutputType>Exe</OutputType>
+	</PropertyGroup>
 
-    <ItemGroup>
-      <PackageReference Include="BenchmarkDotNet" Version="0.11.5" />
-      <PackageReference Include="FastMember" Version="1.5.0" />
-      <PackageReference Include="HyperDescriptor" Version="1.0.5" />
-    </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="BenchmarkDotNet" Version="0.13.1" />
+		<PackageReference Include="FastMember" Version="1.5.0" />
+	</ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\ToDataTable.TestDataGenerator\ToDataTable.TestDataGenerator.csproj" />
-      <ProjectReference Include="..\ToDataTable\ToDataTable.csproj" />
-    </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\ToDataTable.TestDataGenerator\ToDataTable.TestDataGenerator.csproj" />
+		<ProjectReference Include="..\ToDataTable\ToDataTable.csproj" />
+	</ItemGroup>
 
 </Project>

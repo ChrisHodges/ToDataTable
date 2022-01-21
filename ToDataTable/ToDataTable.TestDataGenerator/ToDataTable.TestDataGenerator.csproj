@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>netcoreapp2.2</TargetFramework>
-    </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+	</PropertyGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\ToDataTable\ToDataTable.csproj" />
-    </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\ToDataTable\ToDataTable.csproj" />
+	</ItemGroup>
 
 </Project>
